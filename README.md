@@ -6,6 +6,9 @@
 
 #Перший запит
 ![image](https://user-images.githubusercontent.com/43606985/166812633-8fc8ad36-56c3-4035-91ed-d1273cfc66ed.png)
+![image](https://user-images.githubusercontent.com/43606985/166813504-6a8c0711-f705-4bb2-8f12-1a790b9661f3.png)
+![image](https://user-images.githubusercontent.com/43606985/166813648-5a9b4068-f2e0-46b7-a7f3-0c95711c8a77.png)
+
 
 #Другий запит
 ![image](https://user-images.githubusercontent.com/43606985/166812852-97eb22ce-6155-4dfc-b4d5-4f8566cdceae.png)
