@@ -36,7 +36,17 @@
    }
 
    main {
-      padding: 30px 0;
+      padding: 30px 20px;
+   }
+
+   p {
+      margin-bottom: 10px;
+   }
+
+   .container {
+      display: flex;
+    width: 100%;
+    justify-content: space-around;
    }
 </style>
 
@@ -45,82 +55,56 @@
     <main>
     <div class="container">
       <form action="select.php" method="post">
-         <label>Название жанра</label><input type="text" name="name" id="name"><br /><br />
-         <input type="submit" value="Submit">
-         <div className="block-data">
-               <?php 
-                  $connection = mysqli_connect('localhost', 'root', '', 'Film');
+      <p>Жанр</p>
+         <select name="genre">
+            <?php
+            $connection = mysqli_connect('localhost', 'root', '', 'Film');
 
-                  $name = mysqli_real_escape_string($connection, $_POST['name']);
-                     if($name) {
-                        $result = mysqli_query($connection, $query);
+            $query = 'SELECT * FROM `genre`';
 
-                  while($row = $result->fetch_assoc())
-                  {
-               ?>
+            $result = mysqli_query($connection, $query);
 
-               <?php
-                  }
-                  }
-                  mysqli_close($connection);
-               ?>
-            </div>
+            $res=mysqli_fetch_all ($result, MYSQLI_NUM);
+            foreach($res as $name)
+            echo "<option value='".$name[1]."'>".$name[1]."</option>";
+            ?>
+
+            ?>
+
+            
+         </select>
+         <input type="submit" name="form1_submit" value="Поиск"><br>
          </form>
-      </div>
 
-    <div class="block-data">
-        <h3>Фильмы с 2020-10-29 до нашого времени</h3>
-        <ul>
-        <?php  
+   
+   <form action="select3.php" method="post">
+      <p>Пример '2020-10-29'</p>
+      <input type="text" name="user_date" />
+      <input type="submit" name="form3_submit" value="Поиск"><br>
+   </form>
+
+
+
+
+
+      <form action="select2.php" method="post">
+      <p>Актер</p>
+         <select name="actor">
+               <?php
                $connection = mysqli_connect('localhost', 'root', '', 'Film');
 
-               $query = 'SELECT name FROM film WHERE date BETWEEN "2020-10-29" and CURRENT_DATE';
-            
+               $query = 'SELECT * FROM `actor`';
+
                $result = mysqli_query($connection, $query);
 
-                 while($row = $result->fetch_assoc())
-                {
-             ?>
-        <li>
-            <?php echo  $row['name']; ?>
-         </li>
-        <?php
-                }
-
-                // закрываем соединение с базой
-               mysqli_close($connection);
-             ?>
-        </ul>
-    </div>
-    
-
-   <div class="container">
-   <h3>Все фильмы с участием Лоретта Дивайн</h3>
-    <div className="block-data">
-        <?php   // LOOP TILL END OF DATA
-               $connection = mysqli_connect('localhost', 'root', '', 'Film');
-
-               // текст SQL запроса, который будет передан базе
-               $query = 'SELECT f.name from film f, film_actor, actor a
-               where ID_Film=FID_Film and FID_Actor=ID_Actor and a.name="Лоретта Дивайн";';
-            
-               // выполняем запрос к базе данных
-                  $result = mysqli_query($connection, $query);
-
-                 while($row = $result->fetch_assoc())
-                {
-             ?>
-        <h4>
-            <?php echo  $row['name']; ?>
-        </h4>
-        <?php
-                }
-
-                // закрываем соединение с базой
-               mysqli_close($connection);
-             ?>
-    </div>
-   </div>
+               $res=mysqli_fetch_all ($result, MYSQLI_NUM);
+               foreach($res as $name)
+               echo "<option value='".$name[1]."'>".$name[1]."</option>";
+               ?>
+         </select>
+         <input type="submit" name="form2_submit" value="Поиск"><br>
+      </form>
+      </div>
     </main>
 
 
